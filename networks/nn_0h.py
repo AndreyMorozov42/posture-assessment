@@ -1,9 +1,9 @@
 import numpy as np
 
 
-class NeuralNetwork:
+class NeuralNetworkH0:
     
-    def __init__(self, alpha, input_size, output_size):
+    def __init__(self, input_size, output_size, alpha=0.1):
         self.alpha = alpha
         self.input_size = input_size
         self.output_size = output_size

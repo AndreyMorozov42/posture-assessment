@@ -1,8 +1,8 @@
 import numpy as np
 
 
-class NeuralNetwork:
-    def __init__(self, alpha, input_size, hide_size1, hide_size2, output_size):
+class NeuralNetworkH2:
+    def __init__(self, input_size, hide_size1, hide_size2, output_size, alpha=0.1):
         self.alpha = alpha
         self.input_size = input_size
         self.hide_size1 = hide_size1
