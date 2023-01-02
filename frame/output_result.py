@@ -16,10 +16,18 @@ class Frame:
             self.fill_in()
 
     def fill_in(self):
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        fontScale = 0.5
+        color = (0, 0, 0)
+        thickness = 1
         for img in self.frames:
             x1, y1 = img.xy_1
             x2, y2 = img.xy_2
+            org = (x1, y1 - 5)
             self.frame_image[y1:y2, x1:x2, ] = img.sub_image.copy()
+            self.frame_image = cv2.putText(self.frame_image, img.name,
+                                           org, font, fontScale, color,
+                                           thickness, cv2.LINE_AA)
 
 
 class SubFrame:
