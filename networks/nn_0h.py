@@ -3,11 +3,16 @@ import numpy as np
 
 class NeuralNetworkH0:
     
-    def __init__(self, input_size, output_size, alpha=0.1):
+    def __init__(self, input_size, output_size, alpha=0.1, weights=None):
         self.alpha = alpha
         self.input_size = input_size
         self.output_size = output_size
-        self.w = 0.2 * np.random.rand(output_size, input_size) - 0.1
+        # if the weight matrix was passed to the class
+        if not weights:
+            self.w = weights
+            # TODO: add check-up for matrix shape
+        else:
+            self.w = 0.2 * np.random.rand(output_size, input_size) - 0.1
         self.sigmoid = lambda x: 1 / (1 + np.exp(-x))
         pass
     
