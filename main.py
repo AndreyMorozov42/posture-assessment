@@ -1,37 +1,36 @@
-import cv2 as cv
-import numpy as np
+import argparse
+import os
 
-from frame.output_result import Frame, SubFrame
+from networks.nn_0h import NeuralNetworkH0
+# from posture_processing.posture_estimate import PoseEstimator
+# from posture_processing.posture_classifier import PostureClassifier
 
 
-def main():
+FILES_EXTENTION = [".png", ".jpg", ".jpeg"]
 
-    sfr_1 = SubFrame(
-        xy_1=(100, 100),
-        xy_2=(300, 300),
-        sub_image=np.zeros((200, 200, 3)),
-        name="subFrame1"
-    )
 
-    sfr_2 = SubFrame(
-        xy_1=(400, 100),
-        xy_2=(600, 300),
-        sub_image=np.zeros((200, 200, 3)),
-        name="subFrame2"
-    )
+def search_files(path):
+    files = []
+    # TODO: make check path on files or dir
+    if os.path.exists(path):
+        if True in [ex in path for ex in FILES_EXTENTION]:
+            files.append(path)
+        else:
+            # leave files with some extensions
+            files = list(filter(lambda x: True in [ex in x for ex in FILES_EXTENTION], os.listdir(path)))
+    return files
 
-    fr = Frame(
-        width=700,
-        height=400,
-        frames=[sfr_1, sfr_2]
-    )
 
-    img = fr.frame_image
-
-    cv.imshow("img.png", img)
-    cv.waitKey(0)
-    cv.destroyAllWindows()
+def main(path):
+    files = search_files(path)
+    print(files)
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="...")
+    # param type has possible argument: foto, video, camera
+    # parser.add_argument("--type", "-t", type=str, default="foto")
+    parser.add_argument("--path", "-p", default="./")
+    args = parser.parse_args()
+
+    main(args.path)
