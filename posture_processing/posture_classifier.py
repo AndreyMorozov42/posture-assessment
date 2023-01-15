@@ -9,7 +9,7 @@ class PostureClassifier:
 
     def classification(self, image):
         """
-        This method must return class of posture on transferred image
+        This method must return class of posture_processing on transferred image
         """
         image = ((255 - image.reshape(image.shape[0] * image.shape[1])) / 255 * 0.99) + 0.01
         if self.cls:
