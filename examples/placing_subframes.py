@@ -1,4 +1,4 @@
-import cv2 as cv
+import cv2
 import numpy as np
 
 from frame.output_result import Frame, SubFrame
@@ -28,9 +28,9 @@ def main():
 
     img = fr.frame_image
 
-    cv.imshow("img.png", img)
-    cv.waitKey(0)
-    cv.destroyAllWindows()
+    cv2.imshow("img.png", img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":

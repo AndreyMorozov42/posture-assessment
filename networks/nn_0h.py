@@ -1,21 +1,25 @@
 import numpy as np
+import pickle as pk
+import os
 
 
 class NeuralNetworkH0:
     
-    def __init__(self, input_size, output_size, alpha=0.1, weights=None):
+    def __init__(self, input_size, output_size, alpha=0.1, path_to_weights=None):
         self.alpha = alpha
         self.input_size = input_size
         self.output_size = output_size
-        # if the weight matrix was passed to the class
-        if not weights:
-            self.w = weights
+
+        if path_to_weights is None or not os.path.exists(path=path_to_weights):
+            self.w = 0.2 * np.random.rand(output_size, input_size) - 0.1
             # TODO: add check-up for matrix shape
         else:
-            self.w = 0.2 * np.random.rand(output_size, input_size) - 0.1
+            with open(path_to_weights, "rb") as file_weights:
+                self.w = pk.load(file_weights)
+
         self.sigmoid = lambda x: 1 / (1 + np.exp(-x))
         pass
-    
+
     def train(self, i, t):
         i = np.array([i], dtype=float).T
         t = np.array([t], dtype=float).T
