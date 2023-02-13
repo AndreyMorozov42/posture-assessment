@@ -16,8 +16,9 @@ EPOCH = 30
 
 def search_files(path):
     """
-    :param path:
-    :return:
+    Searching for file in a certain directory
+    :param path: str path to dir with the images
+    :return: list of image
     """
     files = []
     # TODO: make check path on files or dir
