@@ -1,5 +1,5 @@
 import numpy as np
-import pickle as pk
+import pickle
 import os
 
 
@@ -10,12 +10,14 @@ class NeuralNetworkH0:
         self.input_size = input_size
         self.output_size = output_size
 
+        # if weights not exists - initialize weights and train neural network
         if path_to_weights is None or not os.path.exists(path=path_to_weights):
             self.w = 0.2 * np.random.rand(output_size, input_size) - 0.1
-            # TODO: add check-up for matrix shape
+            self.train_flag = True
         else:
             with open(path_to_weights, "rb") as file_weights:
-                self.w = pk.load(file_weights)
+                self.w = pickle.load(file_weights)
+                self.train_flag = False
 
         self.sigmoid = lambda x: 1 / (1 + np.exp(-x))
         pass

@@ -9,10 +9,10 @@ class DataSet:
         # data contains the dataset
         self.data = []
 
-        # test data for check
-        self.test_data = []
-        # train data for learn
-        self.train_data = []
+        # # test data for check
+        # self.test_data = []
+        # # train data for learn
+        # self.train_data = []
 
         # amounts data in dataset
         self.amount = amount
@@ -43,7 +43,7 @@ class DataSet:
         cv2.line(image, (x2, y2), (x3, y3), (0, 0, 0), thickness)
         cv2.line(image, (x3, y3), (x4, y4), (0, 0, 0), thickness)
         cv2.line(image, (x4, y4), (x5, y5), (0, 0, 0), thickness)
-        self.data.append((1, image))
+        self.data.append((1, (255 - image.reshape(20000)) / 255 * 0.99 + 0.01))
 
     def gen_wrong_posture(self, image, thickness=2):
         image = image.copy()
@@ -66,12 +66,13 @@ class DataSet:
         cv2.line(image, (x2, y2), (x3, y3), (0, 0, 0), thickness)
         cv2.line(image, (x3, y3), (x4, y4), (0, 0, 0), thickness)
         cv2.line(image, (x4, y4), (x5, y5), (0, 0, 0), thickness)
-        self.data.append((0, image))
+        self.data.append((0, (255 - image.reshape(20000)) / 255 * 0.99 + 0.01))
 
     def split(self, train, test):
         # ToDo: make better
-        self.train_data = self.data[0:train]
-        self.test_data = self.data[train:train+test]
+        # self.train_data = self.data[0:train]
+        # self.test_data = self.data[train:train+test]
+        return self.data[0:train], self.data[train:train+test]
 
 
 if __name__ == "__main__":
