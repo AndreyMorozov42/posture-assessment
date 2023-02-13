@@ -4,6 +4,7 @@ import mediapipe as mp
 
 class PoseEstimator:
     def __init__(self, mode=False):
+        # body parts of interest
         self.LANDMARKS = ["LEFT_EAR", "RIGHT_EAR", "LEFT_SHOULDER",
                           "RIGHT_SHOULDER", "RIGHT_HIP", "LEFT_HIP",
                           "LEFT_KNEE", "RIGHT_KNEE", "RIGHT_ANKLE",
